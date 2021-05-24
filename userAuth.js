@@ -31,9 +31,10 @@ router.post("/login",async (req,res)=>{
         let db = client.db('user');
         let data = await db.collection('logininfo').findOne({email:req.body.email,password:req.body.password})
         if(data){
-            res.sendStatus(200).json(loginsuccess)
+            console.log(data)
+            res.status(200).json(loginsuccess)
         }else{
-            res.sendStatus(404).json(errormessage)
+            res.status(404).json(errormessage)
         }
         
     } catch (error) {
