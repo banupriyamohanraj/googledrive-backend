@@ -6,6 +6,7 @@ const successmessage = {message:"user successfully registered"};
 const registeredmessage = {message:"User already registered"};
 const loginsuccess = {message:"Login Successful"};
 const errormessage = {message:"Account does not exist,Kindly Register"}
+
 router.post('/register',async(req,res)=>{
 try {
     
@@ -14,7 +15,7 @@ try {
     let data = await db.collection('logininfo').findOne({email:req.body.email})
     if(!data){
         await db.collection('logininfo').insertOne(req.body)
-        res.sendStatus(200).json(successmessage)        
+        res.sendStatus(200).json( successmessage)        
     }else{
         res.sendStatus(404).json(registeredmessage)
     }
@@ -44,4 +45,4 @@ router.post("/login",async (req,res)=>{
     }
 })
 
-module.exports= router
+module.exports= router;
