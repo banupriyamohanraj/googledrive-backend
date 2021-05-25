@@ -15,7 +15,7 @@ try {
     let data = await db.collection('logininfo').findOne({email:req.body.email})
     if(!data){
         await db.collection('logininfo').insertOne(req.body)
-        res.status(200).json(successmessage)        
+        res.status(200).json(req.body)        
     }else if(data){
         console.log(data)
         res.status(404).json(registeredmessage)
@@ -34,7 +34,7 @@ router.post("/login",async (req,res)=>{
         let data = await db.collection('logininfo').findOne({email:req.body.email,password:req.body.password})
         if(data){
             console.log(data)
-            res.status(200).json(loginsuccess)
+            res.status(200).json(data)
         }else{
             res.status(404).json(errormessage)
         }
