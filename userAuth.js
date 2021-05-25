@@ -15,9 +15,10 @@ try {
     let data = await db.collection('logininfo').findOne({email:req.body.email})
     if(!data){
         await db.collection('logininfo').insertOne(req.body)
-        res.sendStatus(200).json( successmessage)        
-    }else{
-        res.sendStatus(404).json(registeredmessage)
+        res.status(200).json(successmessage)        
+    }else if(data){
+        console.log(data)
+        res.status(404).json(registeredmessage)
     }
 } catch (error) {
     console.log(error)
